@@ -1,0 +1,78 @@
+<div class="container w-75 my-5">
+  <h1>Register Now:</h1>
+  <form [formGroup]="register" (ngSubmit)="sendData()" class="my-5">
+    <input
+      [ngClass]="{
+        'is-valid':
+          !register.get('name')?.errors &&
+          (register.get('name')?.touched || register.get('name')?.dirty),
+        'is-invalid':
+          register.get('name')?.errors &&
+          (register.get('name')?.touched || register.get('name')?.dirty)
+      }"
+      formControlName="name"
+      type="text"
+      class="form-control my-3"
+      placeholder="Type Your Name..."
+    />
+    <alertError [formName]="register" controlName="name"></alertError>
+
+    <input
+      [ngClass]="{
+        'is-valid':
+          !register.get('email')?.errors &&
+          (register.get('email')?.touched || register.get('email')?.dirty),
+        'is-invalid':
+          register.get('email')?.errors &&
+          (register.get('email')?.touched || register.get('email')?.dirty)
+      }"
+      formControlName="email"
+      type="email"
+      class="form-control my-3"
+      placeholder="Type Your Email..."
+    />
+    <alertError [formName]="register" controlName="email"></alertError>
+    <input
+      [ngClass]="{
+        'is-valid':
+          !register.get('password')?.errors &&
+          (register.get('password')?.touched ||
+            register.get('password')?.dirty),
+        'is-invalid':
+          register.get('password')?.errors &&
+          (register.get('password')?.touched || register.get('password')?.dirty)
+      }"
+      formControlName="password"
+      type="password"
+      class="form-control my-3"
+      placeholder="Type Your Password..."
+    />
+    <alertError [formName]="register" controlName="password"></alertError>
+    <input
+      [ngClass]="{
+        'is-valid':
+          !register.get('rePassword')?.errors &&
+          (register.get('rePassword')?.touched ||
+            register.get('rePassword')?.dirty),
+        'is-invalid':
+          register.get('rePassword')?.errors &&
+          (register.get('rePassword')?.touched ||
+            register.get('rePassword')?.dirty)
+      }"
+      formControlName="rePassword"
+      type="password"
+      class="form-control my-3"
+      placeholder="Retype Your Password..."
+    />
+    <alertError [formName]="register" controlName="rePassword"></alertError>
+    <div class="text-danger my-3">{{ errorMessage }}</div>
+    <button
+      [disabled]="register.invalid || isBtnSubmit"
+      class="btn bg-main text-white px-4 py-2"
+    >
+      @if (!isBtnSubmit) { Register }@else {
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      }
+    </button>
+  </form>
+</div>

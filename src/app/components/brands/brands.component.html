@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="row">
+        @for (brand of allBrands; track $index) {
+            <div class="col-md-3">
+                <img [src]="brand.image" alt="" class="w-100">
+            </div>
+        }
+    </div>
+</div>

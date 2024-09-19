@@ -1,0 +1,50 @@
+<div class="container w-75 my-5">
+  <h1>Login Now:</h1>
+  <form [formGroup]="login" (ngSubmit)="sendData()" class="my-5">
+    
+    <input
+      [ngClass]="{
+        'is-valid':
+          !login.get('email')?.errors &&
+          (login.get('email')?.touched || login.get('email')?.dirty),
+        'is-invalid':
+          login.get('email')?.errors &&
+          (login.get('email')?.touched || login.get('email')?.dirty)
+      }"
+      formControlName="email"
+      type="email"
+      class="form-control my-3"
+      placeholder="Type Your Email..."
+    />
+    <alertError [formName]="login" controlName="email"></alertError>
+    <input
+      [ngClass]="{
+        'is-valid':
+          !login.get('password')?.errors &&
+          (login.get('password')?.touched ||
+            login.get('password')?.dirty),
+        'is-invalid':
+          login.get('password')?.errors &&
+          (login.get('password')?.touched || login.get('password')?.dirty)
+      }"
+      formControlName="password"
+      type="password"
+      class="form-control my-3"
+      placeholder="Type Your Password..."
+    />
+    <alertError [formName]="login" controlName="password"></alertError>
+    
+    <div class="text-danger mt-3">{{ errorMessage }}</div>
+    <div class="my-3 d-flex justify-content-between">
+          <button
+      [disabled]="login.invalid || isBtnSubmit"
+      class="btn bg-main text-white px-4 py-2"
+    >
+      @if (!isBtnSubmit) { Login }@else {
+      <i class="fa-solid fa-spinner fa-spin"></i>
+      }
+    </button>
+    <a routerLink="/forgot" class="link-primary">forgot password?</a>
+    </div>
+  </form>
+</div>
