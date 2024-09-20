@@ -1,12 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { baseUrl } from '../environment/environment.local';
 
 @Injectable({
   providedIn: 'root',
 })
 export class WishlistService {
+  
+  wishCounter: BehaviorSubject<number> = new BehaviorSubject(0);
+
   headers = { token: localStorage.getItem('token')! };
 
   constructor(private _HttpClient: HttpClient) {}

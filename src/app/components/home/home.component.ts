@@ -91,6 +91,7 @@ export class HomeComponent {
     this._CartService.addProductToCart(productId).subscribe({
       next: (res) => {
         console.log(res);
+        this._CartService.cartCounter.next(res.numOfCartItems);
       },
       error: (err) => {
         console.log(err);
@@ -107,17 +108,19 @@ export class HomeComponent {
   };
   addToWishlist(productId: string) {
     if (this.isItemInWishlist(productId)) {
-      // this.toaster.warning('Product is already in wishlist!', '', {
-      //   timeOut: 3000,
-      //   closeButton: true,
-      //   progressBar: true,
-      // });
+      this.toaster.warning('Product is already in wishlist!', '', {
+        timeOut: 3000,
+        closeButton: true,
+        progressBar: true,
+      });
       return;
     }
 
     this._WishlistService.addProductToWishlist(productId).subscribe({
       next: (res) => {
         console.log(res);
+        this._WishlistService.wishCounter.next(res.data.length);
+
         // make the heart in nav yo light during add to wishlist
         this._SharedService.setHeartIconState(true); // Set the heart icon state to true
         setTimeout(() => {
@@ -138,34 +141,34 @@ export class HomeComponent {
     });
   }
 
-  deleteFromWishlist(productId: string) {
-    if (!this.isItemInWishlist(productId)) {
-      // this.toaster.warning('Product is not in wishlist!', '', {
-      //   timeOut: 3000,
-      //   closeButton: true,
-      //   progressBar: true,
-      // });
-      return;
-    }
+  // deleteFromWishlist(productId: string) {
+  //   if (!this.isItemInWishlist(productId)) {
+  //     // this.toaster.warning('Product is not in wishlist!', '', {
+  //     //   timeOut: 3000,
+  //     //   closeButton: true,
+  //     //   progressBar: true,
+  //     // });
+  //     return;
+  //   }
 
-    this._WishlistService.RemoveItemFromWishlist(productId).subscribe({
-      next: (res) => {
-        console.log(res);
-        this.getWishList(); //only used when the res of teh 2 request 193, 194 are the same
-        this.wishlist = res;
-        this.toaster.success('Product deleted successfully!', '', {
-          timeOut: 3000,
-          closeButton: true,
-          progressBar: true,
-        });
-        this.getProducts();
-        this.isItemInWishlist(productId);
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
+  //   this._WishlistService.RemoveItemFromWishlist(productId).subscribe({
+  //     next: (res) => {
+  //       console.log(res);
+  //       this.getWishList(); //only used when the res of teh 2 request 193, 194 are the same
+  //       this.wishlist = res;
+  //       this.toaster.success('Product deleted successfully!', '', {
+  //         timeOut: 3000,
+  //         closeButton: true,
+  //         progressBar: true,
+  //       });
+  //       this.getProducts();
+  //       this.isItemInWishlist(productId);
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //   });
+  // }
 
   ngOnInit(): void {
     this.getProducts();

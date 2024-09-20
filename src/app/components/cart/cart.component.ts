@@ -40,8 +40,9 @@ export class CartComponent {
         console.log(res);
         // this.getLoggedUserCart();
         this.cart = res; //only used when the res of teh 2 request 35, 36 are the same
+        this._CartService.cartCounter.next(res.numOfCartItems);
         this.itemQTN = res.data.products.quantity;
-       this.toaster.success('Product deleted successfully!', '', {
+       this.toaster.error('Product deleted successfully!', '', {
          timeOut: 3000,
          closeButton: true,
          progressBar: true,

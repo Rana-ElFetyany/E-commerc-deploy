@@ -39,9 +39,10 @@ export class WishlistComponent {
     this._WishlistService.RemoveItemFromWishlist(productId).subscribe({
       next: (res) => {
         console.log(res);
+        this._WishlistService.wishCounter.next(res.data.length);
         this.getLoggedUserWishList();
         this.wishlist = res; //only used when the res of teh 2 request 35, 36 are the same
-        this.toaster.success('Product deleted successfully!', '', {
+        this.toaster.error('Product deleted successfully!', '', {
           timeOut: 3000,
           closeButton: true,
           progressBar: true,
@@ -57,6 +58,8 @@ export class WishlistComponent {
     this._CartService.addProductToCart(productId).subscribe({
       next: (res) => {
         console.log(res);
+        this._CartService.cartCounter.next(res.numOfCartItems);
+
       },
       error: (err) => {
         console.log(err);
