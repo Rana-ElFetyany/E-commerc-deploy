@@ -52,6 +52,10 @@ export class NavberComponent {
     });
   }
 
+  logout(){
+    localStorage.clear();
+  }
+
   ngOnInit(): void {
     this.getLoggedUserCart();
     this.getLoggedUserWishList()

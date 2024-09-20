@@ -60,7 +60,7 @@ export const routes: Routes = [
       { path: 'order', component: OrdersComponent, title: '  Order' },
       { path: 'details/:id', component: DetailsComponent, title: '  Details' },
       { path: 'address/:id', component: AddressComponent, title: '  Address' },
-      { path: 'logout', component: SignupComponent, title: '  Signin' },
+      { path: 'logout', component: SigninComponent, title: '  Signin' },
     ],
   },
   { path: '**', component: NotFoundComponent, title: 'NotFound' },
