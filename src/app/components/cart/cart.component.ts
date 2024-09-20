@@ -33,18 +33,19 @@ export class CartComponent {
     });
   }
 
+
   deleteItem(productId: string) {
     this._CartService.RemoveItemFromCart(productId).subscribe({
       next: (res) => {
         console.log(res);
         // this.getLoggedUserCart();
         this.cart = res; //only used when the res of teh 2 request 35, 36 are the same
-        this.itemQTN = res.data.products.product.quantity;
-        this.toaster.success('Product deleted successfully!', '', {
-          timeOut: 3000,
-          closeButton: true,
-          progressBar: true,
-        });
+        this.itemQTN = res.data.products.quantity;
+       this.toaster.success('Product deleted successfully!', '', {
+         timeOut: 3000,
+         closeButton: true,
+         progressBar: true,
+       });
       },
       error: (err) => {
         console.log(err);

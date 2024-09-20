@@ -56,8 +56,7 @@
             class="nav-link"
             routerLink="/wishlist"
             routerLinkActive="navbar-active"
-            >Wishlist <i 
-            [ngClass]="{'green-heart': isHeartIconGreen}" class="fa-solid fa-heart"></i>
+            >Wishlist <i [class.green-heart]="isHeartIconGreen" class="fa-solid fa-heart"></i>
             <span
               class="icon position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
             >

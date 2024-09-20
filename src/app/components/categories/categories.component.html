@@ -1,9 +1,9 @@
 <div class="container">
-    <div class="row">
+    <div class="row g-3">
             @for (category of allCategories; track $index) {
-                <div class="col-md-3">
+                <div class="col-md-3 rounded-2 p-3 ">
                     <img [src]="category.image" height="400px" class="w-100">
-                    <h2>{{category.name}}</h2>
+                    <h4 class="text-center">{{category.name}}</h4>
                 </div>
             }
     </div>

@@ -11,4 +11,5 @@ export class SharedService {
   setHeartIconState(state: boolean) {
     this.heartIconState.next(state);
   }
+
 }

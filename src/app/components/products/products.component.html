@@ -10,7 +10,14 @@
         <div class="product p-2" >
        <div [routerLink]="'/details/'+ product.id">
 
-             <img [src]="product.imageCover" alt="" class="w-100" />
+             <div class="card-photo position-relative">
+              <img [src]="product.imageCover" alt="" class="w-100" />
+              <div class="wishlist-heart position-absolute top-0 end-0">
+              @if (isItemInWishlist(product._id)) {
+                 <i class="fa-solid fa-heart text-danger px-2"></i>
+               }
+              </div>
+             </div>
             <h6 class="text-main ">{{product.category.name}}</h6>
             <!-- <h6 class="text-main ">{{product.category.name | slice:0:5}}</h6> By using pipe -->
             <h5 class="fw-bolder">{{product.title .split(' ').slice(0,2).join(' ')}}...</h5>
@@ -23,7 +30,14 @@
        </div>
            <div class="buttons d-flex justify-content-between align-items-center g-2">
              <button (click)="addToCart(product.id)" class="btn bg-main text-white w-75 mb-3"> Add To Cart</button>
-             <button (click)="addToWishlist(product.id)" class="btn bg-main text-white mb-3"> <i class="fa-solid fa-heart"></i></button>
+             <button (click)="addToWishlist(product.id); deleteFromWishlist(product.id)" class="btn bg-main text-white mb-3"> <i class="fa-solid fa-heart"></i></button>
+             <!-- <div (click)="addToWishlist(product.id)">
+                        @if (isItemInWishlist(product._id)) {
+                        <i class="fa-solid fa-heart text-main fa-xl"></i>
+                        }@else {
+                        <i class="fa-regular fa-heart text-main fa-xl "></i>
+                        }
+                        </div> -->
            </div>
         </div>
         </div>
